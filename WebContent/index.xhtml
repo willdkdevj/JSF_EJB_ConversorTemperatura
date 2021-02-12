@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Calcular Temperatura</title>
+</h:head>
+<body>
+	<h1><h:outputText value="Informe para qual tipo de temperatura converter o valor"/></h1>
+	
+	<h:form id="form">
+		<h:outputText value="Digite o valor a ser convertido!"/>
+		<h:panelGrid columns="2">
+			<h:inputText id="txtTemp" value="#{conversor.temperatura.tipo == C ? conversor.temperatura.celsius : conversor.temperatura.fahrenheit}" size="4" />
+			<h:selectOneMenu id="cmbTemp" value="#{conversor.temperatura.tipo}">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+				<f:selectItem itemLabel="Celsius" itemValue="C"/>
+				<f:selectItem itemLabel="Fahrenheit" itemValue="F"/>
+			</h:selectOneMenu>
+			<h:inputText id="txtConv" value="#{conversor.temperatura.tipo == C ? conversor.temperatura.celsius : conversor.temperatura.fahrenheit}" readonly="true">
+				<f:convertNumber pattern="##0.##" minFractionDigits="2" locale="pt_BR"/>
+			</h:inputText>
+		</h:panelGrid>
+		<h:commandButton  value="Converter" action="#{conversor.conversorTemperatura}" />
+	</h:form>
+</body>
+</html>
